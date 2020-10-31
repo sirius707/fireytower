@@ -16,19 +16,22 @@ public class platform : MonoBehaviour
     public void initialize()
     {
         Vector3 tmpScale = transform.localScale;
-        Vector3 tmpPos = GameMan.Instance.movementInfo.initialPosition;
+        Vector3 tmpPos = new Vector2(0, 0);
 
         tmpScale.x = Random.Range(GameMan.Instance.movementInfo.minWidth, GameMan.Instance.movementInfo.maxWidth); 
-        tmpPos.x += Random.Range(0.5f, 5f);
+        tmpPos.x = Random.Range(-2.5f, 2.5f);
+
+        tmpPos.y = GameMan.Instance.movementInfo.spacing * GameMan.Instance.movementInfo.level;
+        GameMan.Instance.movementInfo.level++;
 
         transform.localScale = tmpScale;
         transform.position = tmpPos;
     }
 
+
     [ContextMenu("move down")]
-    public void moveDown()
+    public void checkDestroy()//if platform is below threshold destroy and create a new one
     {
-        transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, -50), GameMan.Instance.movementInfo.platformSpd * Time.deltaTime);
         if(transform.position.y <= GameMan.Instance.movementInfo.lowestY)
         {
             gameObject.SetActive(false);

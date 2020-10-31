@@ -10,6 +10,7 @@ public class PlatformsPool : MonoBehaviour
     public int poolSize;
     public float[] initialHeights;// initial y positions of initial platforms
 
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -22,20 +23,19 @@ public class PlatformsPool : MonoBehaviour
             platforms[i].gameObject.SetActive(false);
         }
 
-        for(int i = 0; i < initialHeights.Length; i++)
+        for(int i = 0; i < platforms.Length; i++)
         {
             platforms[i].gameObject.SetActive(true);
-            platforms[i].initialize(); ;
-            platforms[i].transform.position = new Vector2(platforms[i].transform.position.x, initialHeights[i]);
+            platforms[i].initialize();
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    // Attempt to free some platforms to create new ones
+    public void free()
     {
         foreach (platform p in platforms){
             if (p.gameObject.activeSelf){
-                //if(p.isActiveAndEnabled)p.moveDown();
+                if (p.isActiveAndEnabled) p.checkDestroy();
             }
         }
     }

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxWidth: 20
   minWidth: 8
-  initialPosition: {x: -2.5, y: 5.25, z: 0}
+  spacing: 2.2
+  level: 11
   platformSpd: 2.94
-  lowestY: -5
+  lowestY: 0.71010554

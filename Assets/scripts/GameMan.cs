@@ -31,11 +31,8 @@ public class GameMan : MonoBehaviour
     void Start()
     {
         platforms = Instantiate(platformPoolPrefab).GetComponent<PlatformsPool>();
+        movementInfo.level = -1;
+        movementInfo.lowestY = -5;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

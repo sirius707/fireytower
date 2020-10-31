@@ -32,7 +32,9 @@ public class CameraMovement : MonoBehaviour {
 			Debug.Log("returnin g");
 			return;
 		}
-			
+
+		GameMan.Instance.movementInfo.lowestY = transform.position.y - 8;
+
 		if (distance < -maxDistanceBeforeLose)
 		{
 			//gameManager.GameOver();
@@ -48,7 +50,8 @@ public class CameraMovement : MonoBehaviour {
 			targetPosition = new Vector3(0, transform.position.y + speed, transform.position.z);
 			transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime);
 		}
-		
+
+		GameMan.Instance.platforms.free();//free unneeded slots
 		timer += Time.deltaTime;
 		//textSpeed.text = "x " + (int)(1 + (Time.time) / 60);
 		speed = (1 + (timer) / 60) * speedMultiple;
