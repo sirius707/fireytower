@@ -35,6 +35,9 @@ public class motion : MonoBehaviour
     bool is_sprinting;
     float direction = 1;
 
+    //animation 
+    Animator animator;
+
     //misc
     public int extra_jump_max;
     int extra_jump_counter;
@@ -45,6 +48,7 @@ public class motion : MonoBehaviour
     void Start()
     {
         rigid_body = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -52,6 +56,7 @@ public class motion : MonoBehaviour
     {
         //axis
         h_move = Input.GetAxisRaw("Horizontal");
+        
         //controls
         sprint = Input.GetKey(KeyCode.LeftShift);
         jump = Input.GetKeyDown(KeyCode.Space);
@@ -77,6 +82,10 @@ public class motion : MonoBehaviour
                 normal_jump();
             }
         }
+
+        animator.SetFloat("h_speed", Mathf.Abs(h_move));
+        animator.SetBool("is_jumping", is_jumping);
+        animator.SetBool("grounded", is_grounded);
     }
     void FixedUpdate()
     {

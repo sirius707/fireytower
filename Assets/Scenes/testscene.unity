@@ -128,30 +128,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1170273649272169512, guid: 51da2f0a3f0b93a4a993b8cac9017a8b,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: a947ce52128ae8a40844ea171203d06d, type: 2}
     - target: {fileID: 1170273649272169513, guid: 51da2f0a3f0b93a4a993b8cac9017a8b,
         type: 3}
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
-    - target: {fileID: 1170273649272169513, guid: 51da2f0a3f0b93a4a993b8cac9017a8b,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 1170273649272169524, guid: 51da2f0a3f0b93a4a993b8cac9017a8b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.53
+      value: -1.582
       objectReference: {fileID: 0}
     - target: {fileID: 1170273649272169524, guid: 51da2f0a3f0b93a4a993b8cac9017a8b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.66
+      value: -3.379
       objectReference: {fileID: 0}
     - target: {fileID: 1170273649272169524, guid: 51da2f0a3f0b93a4a993b8cac9017a8b,
         type: 3}
@@ -197,36 +187,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1170273649272169524, guid: 51da2f0a3f0b93a4a993b8cac9017a8b,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.0144699
-      objectReference: {fileID: 0}
-    - target: {fileID: 1170273649272169526, guid: 51da2f0a3f0b93a4a993b8cac9017a8b,
-        type: 3}
-      propertyPath: jump_speed
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1170273649272169526, guid: 51da2f0a3f0b93a4a993b8cac9017a8b,
-        type: 3}
-      propertyPath: speed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1170273649272169527, guid: 51da2f0a3f0b93a4a993b8cac9017a8b,
-        type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1170273649272169527, guid: 51da2f0a3f0b93a4a993b8cac9017a8b,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1170273649272169527, guid: 51da2f0a3f0b93a4a993b8cac9017a8b,
-        type: 3}
-      propertyPath: m_GravityScale
-      value: 3.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51da2f0a3f0b93a4a993b8cac9017a8b, type: 3}
@@ -540,4 +500,4 @@ MonoBehaviour:
   speedMultiple: 2
   target: {fileID: 1501532380}
   startLimmit: 3
-  maxDistanceBeforeLose: 1.85
+  maxDistanceBeforeLose: 7.52
