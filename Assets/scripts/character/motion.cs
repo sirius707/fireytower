@@ -11,9 +11,11 @@ public class motion : MonoBehaviour
     public float sprint_speed;
     public float jump_speed;
     public Transform ground_detect;
-    public Transform wall_detect; 
+    public Transform wall_detect;
     public LayerMask gnd_layer;
     public LayerMask wall_layer;
+
+    public Joystick joystick;
 
     private float speed_modifier;
     private Vector3 jmp_velocity;
@@ -55,8 +57,13 @@ public class motion : MonoBehaviour
     private void Update()
     {
         //axis
-        h_move = Input.GetAxisRaw("Horizontal");
-        
+        h_move = joystick.Horizontal;
+        if (h_move != 0)
+        {
+            h_move = Mathf.Sign(h_move);
+        }
+        h_move += Input.GetAxisRaw("Horizontal");
+
         //controls
         sprint = Input.GetKey(KeyCode.LeftShift);
         jump = Input.GetKeyDown(KeyCode.Space);
@@ -67,9 +74,50 @@ public class motion : MonoBehaviour
         is_walled = false;
         is_jumping = jump && (is_grounded || extra_jump_counter > 0);
         is_sprinting = sprint && !is_jumping && is_grounded;
-    
+
         //jumping 
         if (is_jumping)
+        {
+            executejump();
+        }
+
+
+        animator.SetFloat("h_speed", Mathf.Abs(h_move));
+        Debug.Log(h_move);
+        animator.SetBool("grounded", is_grounded);
+    }
+
+    void FixedUpdate()
+    {
+
+        //movement
+        if (is_grounded)
+        {
+            extra_jump_counter = extra_jump_max;
+            animator.SetBool("is_jumping", false);
+        }
+        if (is_sprinting) { speed_modifier = sprint_speed; }
+        else speed_modifier = speed;
+
+        if (h_move != 0)
+        {
+            if (h_move != direction)
+            {
+                flip();
+            }
+        }
+
+
+        rigid_body.velocity = new Vector2(h_move * speed_modifier, rigid_body.velocity.y);
+
+
+    }
+    #endregion
+
+    #region functions
+    void executejump()
+    {
+        if ((is_grounded || extra_jump_counter > 0))
         {
             if (is_walled && !is_grounded)
             {
@@ -83,35 +131,10 @@ public class motion : MonoBehaviour
             }
         }
 
-        animator.SetFloat("h_speed", Mathf.Abs(h_move));
-        animator.SetBool("is_jumping", is_jumping);
-        animator.SetBool("grounded", is_grounded);
     }
-    void FixedUpdate()
-    {
-        
-        //movement
-        if (is_grounded) extra_jump_counter = extra_jump_max;
-        if (is_sprinting) { speed_modifier = sprint_speed; }
-        else speed_modifier = speed;
-
-        if (h_move != 0){
-            if(h_move != direction)
-            {
-                flip();
-            }
-        }
-        
-        
-        rigid_body.velocity = new Vector2(h_move * speed_modifier, rigid_body.velocity.y);
-
-        
-    }
-    #endregion
-
-    #region functions
     void normal_jump()
     {
+        animator.SetBool("is_jumping", is_jumping);
         rigid_body.velocity = Vector2.up * jump_speed;
     }
 
@@ -133,4 +156,12 @@ public class motion : MonoBehaviour
         transform.localScale = scale;
     }
     #endregion
+
+    #region touch controls
+    public void touchJump()
+    {
+        executejump();
+    }
+    #endregion
+
 }
